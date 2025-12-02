@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaults</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 100vmin;
+            height: 100vmin;
+            padding-top: 16vmin; /* Space for tooltip at top */
+        }
+
+        .tooltip-display {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 200;
+            min-height: 12vmin;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tooltip-display .name {
+            font-size: 3.6vmin;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tooltip-display .description {
+            font-size: 2.4vmin;
+            color: #ccc;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tooltip-display.show .name,
+        .tooltip-display.show .description {
+            opacity: 1;
+        }
+
+        .ring {
+            position: absolute;
+            top: calc(50% + 8vmin); /* Account for padding-top */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vmin;
+            height: 60vmin;
+            border: 6px solid #444;
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(100, 100, 100, 0.3);
+        }
+
+        .orbit {
+            position: absolute;
+            top: calc(50% + 8vmin); /* Account for padding-top */
+            left: 50%;
+            width: 60vmin;
+            height: 60vmin;
+            transform: translate(-50%, -50%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .vault-item {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .vault-item:hover {
+            transform: scale(1.2);
+        }
+
+        .vault-circle {
+            width: 8vmin;
+            height: 8vmin;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4.8vmin;
+            background: linear-gradient(135deg, #666, #333);
+            border: 4px solid #888;
+            box-shadow: 0 0 30px rgba(150, 150, 150, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .vault-item:hover .vault-circle {
+            background: linear-gradient(135deg, #888, #555);
+            box-shadow: 0 0 25px rgba(200, 200, 200, 0.7);
+        }
+
+        .vault-emoji {
+            animation: counter-rotate 30s linear infinite;
+        }
+
+        @keyframes counter-rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+
+        /* Position each vault on the ring */
+        .vault-item:nth-child(1) {
+            top: 0%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .vault-item:nth-child(1) .vault-name {
+            top: -25px;
+        }
+
+        .vault-item:nth-child(2) {
+            top: 14.6%;
+            left: 85.4%;
+            transform: translate(-50%, -50%);
+        }
+        .vault-item:nth-child(2) .vault-name {
+            left: 50px;
+            top: 50%;
+            transform-origin: center;
+        }
+
+        .vault-item:nth-child(3) {
+            top: 50%;
+            left: 100%;
+            transform: translate(-50%, -50%);
+        }
+        .vault-item:nth-child(3) .vault-name {
+            left: 50px;
+        }
+
+        .vault-item:nth-child(4) {
+            top: 85.4%;
+            left: 85.4%;
+            transform: translate(-50%, -50%);
+        }
+        .vault-item:nth-child(4) .vault-name {
+            left: 50px;
+            top: 50%;
+        }
+
+        .vault-item:nth-child(5) {
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .vault-item:nth-child(5) .vault-name {
+            bottom: -25px;
+            top: auto;
+        }
+
+        .vault-item:nth-child(6) {
+            top: 85.4%;
+            left: 14.6%;
+            transform: translate(-50%, -50%);
+        }
+        .vault-item:nth-child(6) .vault-name {
+            right: 50px;
+            left: auto;
+        }
+
+        .vault-item:nth-child(7) {
+            top: 50%;
+            left: 0%;
+            transform: translate(-50%, -50%);
+        }
+        .vault-item:nth-child(7) .vault-name {
+            right: 50px;
+            left: auto;
+        }
+
+        .vault-item:nth-child(8) {
+            top: 14.6%;
+            left: 14.6%;
+            transform: translate(-50%, -50%);
+        }
+        .vault-item:nth-child(8) .vault-name {
+            right: 50px;
+            left: auto;
+        }
+
+        .center-glow {
+            position: absolute;
+            top: calc(50% + 8vmin);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20vmin;
+            height: 20vmin;
+            background: radial-gradient(circle, rgba(80, 80, 80, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .center-text {
+            position: absolute;
+            top: calc(50% + 8vmin);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .center-text a {
+            color: #888;
+            text-decoration: none;
+            font-size: 4vmin;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .center-text a:hover {
+            color: #fff;
+        }
+
+        .center-text .subtitle {
+            color: #555;
+            font-size: 2.8vmin;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tooltip-display" id="tooltip-display">
+            <div class="name" id="tooltip-name"></div>
+            <div class="description" id="tooltip-description"></div>
+        </div>
+        <div class="center-glow"></div>
+        <div class="center-text">
+            <a href="https://github.com/grantsform" target="_blank">@grantsform</a>
+            <div class="subtitle">Obsidian Vaults</div>
+        </div>
+        <div class="ring"></div>
+        <div class="orbit" id="orbit">
+            <!-- Vault circles will be dynamically generated -->
+        </div>
+    </div>
+
+    <script>
+        // Configure your vaults here
+        const vaults = [
+            { name: 'Nursery', emoji: '👶', description: 'Work-In-Progress Site Developments And Experiments', link: '/vaults/nursery/' },
+            { name: 'Island', emoji: '🗿', description: 'Random Thoughts And Idea Fragments', link: '/vaults/stone/' },
+            { name: 'Mecha', emoji: '🤖', description: 'Game Mechanics And Godot Engine Learning', link: '/vaults/mecha/' },
+            { name: 'Spatial', emoji: '🪐', description: 'Spatial Computing And XR Experiments', link: '/vaults/spatial/' },
+            { name: 'AiAiAi', emoji: '🎭', description: 'Autonomous AI Experiments And Implementations', link: '/vaults/aiaiaia/' },
+            { name: 'Orange', emoji: '<span style="color: orange;">λ</span>', description: 'Lisp Exploration And Implementations', link: '/vaults/orange/' },
+            { name: '()Dise', emoji: '🏝️', description: 'Ideal Lisp Language Design', link: '/vaults/dise/' },
+            { name: 'Shift', emoji: '⚙️', description: 'Godot Experiments And Case Studies', link: '/vaults/shift/' }
+        ];
+
+        const orbit = document.getElementById('orbit');
+        const tooltipDisplay = document.getElementById('tooltip-display');
+        const tooltipName = document.getElementById('tooltip-name');
+        const tooltipDescription = document.getElementById('tooltip-description');
+        const circleRadius = 150;
+
+        vaults.forEach((vault, index) => {
+            const angle = (index / vaults.length) * 2 * Math.PI - Math.PI / 2;
+            
+            // Circle position on orbit
+            const x = 50 + (circleRadius / 300) * 100 * Math.cos(angle);
+            const y = 50 + (circleRadius / 300) * 100 * Math.sin(angle);
+
+            const item = document.createElement('a');
+            item.href = vault.link;
+            item.className = 'vault-item';
+            item.style.left = `${x}%`;
+            item.style.top = `${y}%`;
+            item.style.transform = 'translate(-50%, -50%)';
+            item.dataset.vaultIndex = index;
+
+            const circle = document.createElement('div');
+            circle.className = 'vault-circle';
+
+            const emoji = document.createElement('span');
+            emoji.className = 'vault-emoji';
+            emoji.innerHTML = vault.emoji;
+            circle.appendChild(emoji);
+
+            item.appendChild(circle);
+            orbit.appendChild(item);
+
+            // Add hover events for tooltip
+            item.addEventListener('mouseenter', () => {
+                tooltipName.textContent = vault.name;
+                tooltipDescription.textContent = vault.description;
+                tooltipDisplay.classList.add('show');
+            });
+
+            item.addEventListener('mouseleave', () => {
+                tooltipDisplay.classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>
