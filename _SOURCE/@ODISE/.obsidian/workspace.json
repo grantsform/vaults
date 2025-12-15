@@ -4,19 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "8b0a59e271780133",
+        "id": "1a65c106ccbf3a8a",
         "type": "tabs",
         "children": [
           {
-            "id": "ffdc26fefad8add3",
+            "id": "f1cf319295aba3af",
             "type": "leaf",
             "state": {
               "type": "canvas",
               "state": {
                 "file": "index.canvas",
                 "viewState": {
-                  "x": 0,
-                  "y": 0,
+                  "x": 0.5,
+                  "y": 0.5,
                   "zoom": 0
                 }
               },
@@ -188,7 +188,7 @@
       "webpage-html-export:Export as HTML": false
     }
   },
-  "active": "ffdc26fefad8add3",
+  "active": "f1cf319295aba3af",
   "lastOpenFiles": [
     "index.canvas",
     "res/twemoji_desert-island.webp",

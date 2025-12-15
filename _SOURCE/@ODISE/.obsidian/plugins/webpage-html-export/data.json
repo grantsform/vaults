@@ -11,7 +11,9 @@
     "displayProgress": true,
     "inlineHTML": false,
     "exportPath": "/room/jostgrant/.vaults/odise",
-    "filesToExport": [],
+    "filesToExport": [
+      "all"
+    ],
     "useFallbackRenderer": false,
     "addBodyClasses": true,
     "addMathjaxStyles": true,
