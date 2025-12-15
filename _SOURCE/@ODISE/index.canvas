@@ -1,0 +1,7 @@
+{
+	"nodes":[
+		{"id":"59fb86b00ddfe4c1","type":"file","file":"res/twemoji_desert-island.webp","x":-246,"y":-46,"width":93,"height":93},
+		{"id":"3b78748ed32c3c85","type":"text","text":"# ( )DISE","x":-153,"y":-46,"width":400,"height":93}
+	],
+	"edges":[]
+}

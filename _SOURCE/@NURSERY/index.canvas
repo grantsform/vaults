@@ -1,0 +1,7 @@
+{
+	"nodes":[
+		{"id":"ed90875f35eb12e8","type":"file","file":"res/twemoji_baby.webp","x":-246,"y":-46,"width":93,"height":93},
+		{"id":"a3a3907179c90f7c","type":"text","text":"# NURSERY","x":-153,"y":-46,"width":400,"height":93}
+	],
+	"edges":[]
+}

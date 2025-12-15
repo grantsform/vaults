@@ -1,0 +1,8 @@
+{
+	"nodes":[
+		{"id":"4febb0891e8d73b6","type":"file","file":"res/the-lambda.webp","x":-246,"y":-46,"width":93,"height":93},
+		{"id":"96e56bf7a6aa8f49","type":"text","text":"# ORANGE","x":-153,"y":-46,"width":400,"height":93},
+		{"id":"37bab3871ba194e5","type":"text","text":"","x":-153,"y":80,"width":640,"height":300}
+	],
+	"edges":[]
+}

@@ -1,0 +1,7 @@
+{
+	"nodes":[
+		{"id":"e2953824d5223a56","type":"file","file":"res/twemoji_moai.webp","x":-246,"y":-46,"width":93,"height":93},
+		{"id":"b555a73e7c2e53f7","type":"text","text":"# ISLAND","x":-153,"y":-46,"width":400,"height":93}
+	],
+	"edges":[]
+}

@@ -1,0 +1,7 @@
+{
+	"nodes":[
+		{"id":"ecc1258d507f52f6","type":"file","file":"res/twemoji_performing-arts.webp","x":-246,"y":-46,"width":93,"height":93},
+		{"id":"f124fe81a28e45af","type":"text","text":"# AIAIAI","x":-153,"y":-46,"width":400,"height":93}
+	],
+	"edges":[]
+}

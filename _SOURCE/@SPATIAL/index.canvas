@@ -1,0 +1,7 @@
+{
+	"nodes":[
+		{"id":"c072db7b3a63bedd","type":"file","file":"res/twemoji_ringed-planet.webp","x":-506,"y":-213,"width":93,"height":93},
+		{"id":"e73237d830e984da","type":"text","text":"# SPATIAL","x":-413,"y":-213,"width":400,"height":93}
+	],
+	"edges":[]
+}
